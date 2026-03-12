@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AylizDev | Digital Architect</title>
+    <link rel="icon" href="icon.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Outfit:wght@100;400;900&display=swap');
+
+        :root {
+            --bg-dark: #050505;
+            --accent-primary: #6366f1;
+            --accent-secondary: #ec4899;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- MESH GRADIENT BACKGROUND --- */
+        .mesh-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, transparent 100%);
+        }
+
+        /* --- ADVANCED PRELOADER --- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: clip-path 1.2s cubic-bezier(0.8, 0, 0.2, 1);
+            clip-path: circle(150% at 50% 50%);
+        }
+
+        .loader-text-wrap {
+            overflow: hidden;
+            height: 60px;
+        }
+
+        .loader-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: translateY(100%);
+            animation: text-reveal 0.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+        }
+
+        @keyframes text-reveal {
+            to { transform: translateY(0); }
+        }
+
+        .loader-bar {
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #6366f1, transparent);
+            margin-top: 10px;
+            animation: bar-load 1.5s ease forwards;
+        }
+
+        @keyframes bar-load {
+            to { width: 200px; }
+        }
+
+        /* --- GLASSMOPHISM CARDS --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -4px;
+        }
+
+        /* --- SCROLL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            filter: blur(10px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* --- PROJECT LINKS --- */
+        .proj-link {
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+        }
+        .proj-link:hover {
+            border-left-color: var(--accent-primary);
+            padding-left: 1.5rem;
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    </style>
+</head>
+<body class="antialiased select-none">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-text-wrap">
+            <div class="loader-text">AylizDev.</div>
+        </div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <div class="mesh-bg"></div>
+
+    <main id="content" class="min-h-screen flex items-center justify-center p-6 md:p-24 overflow-y-auto custom-scrollbar h-screen">
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left Side: Profile & Title -->
+            <div class="lg:col-span-7 space-y-8">
+                <div class="reveal">
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-6">
+                        Dijital Deneyim Tasarımcısı
+                    </div>
+                    <h1 class="hero-title text-6xl md:text-8xl mb-6 bg-gradient-to-br from-white via-white to-indigo-400 bg-clip-text text-transparent">
+                        Kodun Geleceği <br> Burada.
+                    </h1>
+                    <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                        Ayliz Azaklı olarak; minimalizmi, hızı ve AI teknolojilerini birleştirerek yarının web deneyimlerini bugün inşa ediyorum. 
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 200ms;">
+                    <a href="https://www.linkedin.com/in/ayliz-azaklı-74579b318/" target="_blank" class="px-8 py-4 bg-white text-black rounded-2xl font-bold text-sm hover:bg-indigo-50 transition active:scale-95">İletişime Geç</a>
+                    <a href="https://github.com/merveayliz" target="_blank" class="px-8 py-4 bg-transparent border border-white/10 rounded-2xl font-bold text-sm hover:bg-white/5 transition active:scale-95">GitHub Projeleri</a>
+                </div>
+            </div>
+
+            <!-- Right Side: Interaction Card -->
+            <div class="lg:col-span-5 reveal" style="transition-delay: 400ms;">
+                <div class="glass-card p-8 md:p-10">
+                    <div class="flex items-center gap-6 mb-10">
+                        <div class="relative">
+                            <div class="absolute -inset-2 bg-indigo-500 rounded-full blur-xl opacity-20 animate-pulse"></div>
+                            <img src="icon.jpeg" class="w-20 h-20 rounded-2xl object-cover border border-white/10 rotate-3 shadow-2xl transition hover:rotate-0" alt="Ayliz">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold tracking-tight">Ayliz Azaklı</h3>
+                            <p class="text-sm text-gray-500">@merveayliz</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <button onclick="openPanel('projects')" class="w-full flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition group">
+                            <span class="text-sm font-semibold opacity-70 group-hover:opacity-100 transition">Seçilmiş Projeler</span>
+                            <span class="text-indigo-400">07</span>
+                        </button>
+                        <button onclick="openPanel('certs')" class="w-full flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition group">
+                            <span class="text-sm font-semibold opacity-70 group-hover:opacity-100 transition">Sertifikalar</span>
+                            <span class="text-pink-400">02</span>
+                        </button>
+                        <div class="pt-6 border-t border-white/5 flex justify-between items-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                            <span>Mısır Makale Yayını</span>
+                            <span class="text-green-500">Onaylandı</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Project Side Panel -->
+    <div id="sidePanel" class="fixed inset-0 z-[100] translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.8,0,0.2,1)]">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closePanel()"></div>
+        <div class="absolute right-0 top-0 h-full w-full md:w-[450px] bg-[#0a0a0a] border-l border-white/10 p-8 md:p-12 shadow-2xl overflow-y-auto custom-scrollbar">
+            <button onclick="closePanel()" class="mb-12 text-gray-500 hover:text-white transition flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                <span>← Geri Dön</span>
+            </button>
+            
+            <div id="panelContent">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Preloader & Reveal Logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(() => {
+                preloader.style.clipPath = "circle(0% at 50% 50%)";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                    document.body.style.overflow = "auto";
+                    
+                    // Reveal elements
+                    document.querySelectorAll('.reveal').forEach((el, i) => {
+                        setTimeout(() => el.classList.add('active'), i * 150);
+                    });
+                }, 1200);
+            }, 2000);
+        });
+
+        // Panel Data
+        const data = {
+            projects: `
+                <h2 class="text-4xl font-black mb-8 tracking-tighter">Projeler</h2>
+                <div class="space-y-4">
+                    <a href="https://merveayliz.github.io/aylizdev2/" target="_blank" class="proj-link block p-4">
+                        <div class="text-[10px] text-indigo-400 font-bold mb-1 uppercase">Portfolio</div>
+                        <div class="font-bold">AylizDev 2.0</div>
+                    </a>
+                    <a href="https://merveayliz.github.io/ark-os-web/" target="_blank" class="proj-link block p-4">
+                        <div class="text-[10px] text-indigo-400 font-bold mb-1 uppercase">Operating System</div>
+                        <div class="font-bold">Ark OS Web</div>
+                    </a>
+                    <a href="https://merveayliz.github.io/NextWatch/" target="_blank" class="proj-link block p-4">
+                        <div class="text-[10px] text-indigo-400 font-bold mb-1 uppercase">E-Commerce</div>
+                        <div class="font-bold">NextWatch</div>
+                    </a>
+                    <a href="https://merveayliz.github.io/Curly-Design-Studio/" target="_blank" class="proj-link block p-4">
+                        <div class="text-[10px] text-indigo-400 font-bold mb-1 uppercase">Agency</div>
+                        <div class="font-bold">Curly Studio</div>
+                    </a>
+                    <a href="https://merveayliz.github.io/SoftKey-Studio/" target="_blank" class="proj-link block p-4">
+                        <div class="text-[10px] text-indigo-400 font-bold mb-1 uppercase">Tech</div>
+                        <div class="font-bold">SoftKey Studio</div>
+                    </a>
+                    <a href="https://merveayliz.github.io/ruh_duragi/" target="_blank" class="proj-link block p-4">
+                        <div class="text-[10px] text-indigo-400 font-bold mb-1 uppercase">Wellness</div>
+                        <div class="font-bold">Ruh Durağı</div>
+                    </a>
+                </div>
+            `,
+            certs: `
+                <h2 class="text-4xl font-black mb-8 tracking-tighter">Sertifikalar</h2>
+                <div class="space-y-6">
+                    <div class="p-6 rounded-3xl bg-white/5 border border-white/5">
+                        <div class="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4 text-indigo-400">🎨</div>
+                        <h4 class="font-bold text-lg">UX Design Mastery</h4>
+                        <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">Google Certification</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-white/5 border border-white/5">
+                        <div class="w-10 h-10 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4 text-pink-400">💻</div>
+                        <h4 class="font-bold text-lg">Full Stack Web Dev</h4>
+                        <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">FreeCodeCamp</p>
+                    </div>
+                </div>
+            `
+        };
+
+        function openPanel(type) {
+            document.getElementById('panelContent').innerHTML = data[type];
+            document.getElementById('sidePanel').classList.remove('translate-x-full');
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePanel() {
+            document.getElementById('sidePanel').classList.add('translate-x-full');
+            document.body.style.overflow = "auto";
+        }
+    </script>
+</body>
+</html>
